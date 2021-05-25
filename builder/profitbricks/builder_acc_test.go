@@ -1,28 +1,43 @@
 package profitbricks
 
 import (
+	"fmt"
 	"os"
+	"os/exec"
 	"testing"
 
-	builderT "github.com/hashicorp/packer/acctest"
+	"github.com/hashicorp/packer-plugin-sdk/acctest"
 )
 
 func TestBuilderAcc_basic(t *testing.T) {
-	builderT.Test(t, builderT.TestCase{
-		PreCheck: func() { testAccPreCheck(t) },
-		Builder:  &Builder{},
+	testCase := &acctest.PluginTestCase{
+		Setup:    testAccPreCheck,
 		Template: testBuilderAccBasic,
-	})
+		Check: func(buildCommand *exec.Cmd, logfile string) error {
+			if buildCommand.ProcessState != nil {
+				if buildCommand.ProcessState.ExitCode() != 0 {
+					return fmt.Errorf("Bad exit code. Logfile: %s", logfile)
+				}
+			}
+			return nil
+		},
+	}
+
+	acctest.TestPlugin(t, testCase)
+
 }
 
-func testAccPreCheck(t *testing.T) {
+func testAccPreCheck() error {
 	if v := os.Getenv("PROFITBRICKS_USERNAME"); v == "" {
-		t.Fatal("PROFITBRICKS_USERNAME must be set for acceptance tests")
+		return fmt.Errorf("PROFITBRICKS_USERNAME must be set for acceptance tests")
 	}
 
 	if v := os.Getenv("PROFITBRICKS_PASSWORD"); v == "" {
-		t.Fatal("PROFITBRICKS_PASSWORD must be set for acceptance tests")
+		return fmt.Errorf("PROFITBRICKS_PASSWORD must be set for acceptance tests")
 	}
+
+	return nil
+
 }
 
 const testBuilderAccBasic = `
