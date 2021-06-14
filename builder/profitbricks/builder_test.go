@@ -18,8 +18,7 @@ func testConfig() map[string]interface{} {
 }
 
 func TestImplementsBuilder(t *testing.T) {
-	var raw interface{}
-	raw = &Builder{}
+	var raw interface{} = &Builder{}
 	if _, ok := raw.(packersdk.Builder); !ok {
 		t.Fatalf("Builder should be a builder")
 	}

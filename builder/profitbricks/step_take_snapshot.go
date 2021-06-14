@@ -112,7 +112,7 @@ func (s *stepTakeSnapshot) waitForRequest(path string, config Config, ui packers
 		i++
 	}
 
-	if done == false {
+	if !done {
 		return fmt.Errorf("request not fulfilled after waiting %d seconds",
 			int64(waitCount)*int64(waitInterval)/int64(time.Second))
 	}
@@ -143,7 +143,7 @@ func (s *stepTakeSnapshot) waitTillSnapshotAvailable(id string, config Config, u
 		ui.Say(fmt.Sprintf("... still waiting, %d seconds have passed", int64(waitInterval)*int64(i)))
 	}
 
-	if done == false {
+	if !done {
 		return fmt.Errorf("snapshot not created after waiting %d seconds",
 			int64(waitCount)*int64(waitInterval)/int64(time.Second))
 	}
