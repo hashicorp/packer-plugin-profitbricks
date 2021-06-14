@@ -72,7 +72,6 @@ type FlatConfig struct {
 	PBUrl                     *string           `mapstructure:"url" cty:"url" hcl:"url"`
 	Region                    *string           `mapstructure:"location" cty:"location" hcl:"location"`
 	Image                     *string           `mapstructure:"image" cty:"image" hcl:"image"`
-	SSHKey                    *string           `cty:"ssh_key" hcl:"ssh_key"`
 	SnapshotName              *string           `mapstructure:"snapshot_name" cty:"snapshot_name" hcl:"snapshot_name"`
 	DiskSize                  *int              `mapstructure:"disk_size" cty:"disk_size" hcl:"disk_size"`
 	DiskType                  *string           `mapstructure:"disk_type" cty:"disk_type" hcl:"disk_type"`
@@ -155,7 +154,6 @@ func (*FlatConfig) HCL2Spec() map[string]hcldec.Spec {
 		"url":                          &hcldec.AttrSpec{Name: "url", Type: cty.String, Required: false},
 		"location":                     &hcldec.AttrSpec{Name: "location", Type: cty.String, Required: false},
 		"image":                        &hcldec.AttrSpec{Name: "image", Type: cty.String, Required: false},
-		"ssh_key":                      &hcldec.AttrSpec{Name: "ssh_key", Type: cty.String, Required: false},
 		"snapshot_name":                &hcldec.AttrSpec{Name: "snapshot_name", Type: cty.String, Required: false},
 		"disk_size":                    &hcldec.AttrSpec{Name: "disk_size", Type: cty.Number, Required: false},
 		"disk_type":                    &hcldec.AttrSpec{Name: "disk_type", Type: cty.String, Required: false},

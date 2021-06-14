@@ -22,9 +22,7 @@ func (s *stepCreateServer) Run(ctx context.Context, state multistep.StateBag) mu
 
 	profitbricks.SetAuth(c.PBUsername, c.PBPassword)
 	profitbricks.SetDepth("5")
-	if c.Comm.SSHPublicKey != nil {
-		c.SSHKey = string(c.Comm.SSHPublicKey)
-	} else {
+	if c.Comm.SSHPublicKey == nil {
 		ui.Error("No ssh private key set; ssh authentication won't be possible. Please specify your private key in the ssh_private_key_file configuration key.")
 		return multistep.ActionHalt
 	}
@@ -63,9 +61,7 @@ func (s *stepCreateServer) Run(ctx context.Context, state multistep.StateBag) mu
 			},
 		},
 	}
-	if c.SSHKey != "" {
-		server.Entities.Volumes.Items[0].Properties.SshKeys = []string{c.SSHKey}
-	}
+	server.Entities.Volumes.Items[0].Properties.SshKeys = []string{string(c.Comm.SSHPublicKey)}
 
 	if c.Comm.SSHPassword != "" {
 		server.Entities.Volumes.Items[0].Properties.ImagePassword = c.Comm.SSHPassword
