@@ -24,7 +24,6 @@ type Config struct {
 
 	Region       string `mapstructure:"location"`
 	Image        string `mapstructure:"image"`
-	SSHKey       string
 	SnapshotName string `mapstructure:"snapshot_name"`
 	DiskSize     int    `mapstructure:"disk_size"`
 	DiskType     string `mapstructure:"disk_type"`
@@ -37,7 +36,7 @@ type Config struct {
 func (c *Config) Prepare(raws ...interface{}) ([]string, error) {
 
 	var md mapstructure.Metadata
-	err := config.Decode(&c, &config.DecodeOpts{
+	err := config.Decode(c, &config.DecodeOpts{
 		Metadata:           &md,
 		Interpolate:        true,
 		InterpolateContext: &c.ctx,
