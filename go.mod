@@ -7,7 +7,7 @@ require (
 	github.com/hashicorp/packer-plugin-sdk v0.3.1
 	github.com/mitchellh/mapstructure v1.4.1
 	github.com/profitbricks/profitbricks-sdk-go v4.0.2+incompatible
-	github.com/zclconf/go-cty v1.10.0
+	github.com/zclconf/go-cty v1.11.0
 	golang.org/x/crypto v0.0.0-20220517005047-85d78b3ac167
 )
 
