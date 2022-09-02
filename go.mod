@@ -3,7 +3,7 @@ module github.com/hashicorp/packer-plugin-profitbricks
 go 1.17
 
 require (
-	github.com/hashicorp/hcl/v2 v2.13.0
+	github.com/hashicorp/hcl/v2 v2.14.0
 	github.com/hashicorp/packer-plugin-sdk v0.3.1
 	github.com/mitchellh/mapstructure v1.4.1
 	github.com/profitbricks/profitbricks-sdk-go v4.0.2+incompatible
