@@ -1,11 +1,3 @@
----
-description: The ProfitBricks builder is able to create images for ProfitBricks cloud.
-page_title: ProfitBricks - Builders
-nav_title: ProfitBricks
----
-
-# ProfitBricks Builder
-
 Type: `profitbricks`
 Artifact BuilderId: `packer.profitbricks`
 
@@ -23,7 +15,10 @@ In addition to the options listed here, a
 builder. In addition to the options defined there, a private key file
 can also be supplied to override the typical auto-generated key:
 
-@include 'packer-plugin-sdk/communicator/SSH-Private-Key-File-not-required.mdx'
+- `ssh_private_key_file` (string) - Path to a PEM encoded private key file to use to authenticate with SSH.
+  The `~` can be used in path and will be expanded to the home directory
+  of current user.
+
 
 ### Required
 
