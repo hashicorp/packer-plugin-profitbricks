@@ -2,7 +2,7 @@
 # https://github.com/hashicorp/integration-template#metadata-configuration
 integration {
   name = "Profitbricks"
-  description = "TODO"
+  description = "The profitbricks plugin can be used with HashiCorp Packer to create custom images on IONOS Compute Engine."
   identifier = "packer/BrandonRomano/profitbricks"
   component {
     type = "builder"

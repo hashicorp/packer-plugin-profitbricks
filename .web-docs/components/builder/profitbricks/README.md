@@ -2,7 +2,7 @@ Type: `profitbricks`
 Artifact BuilderId: `packer.profitbricks`
 
 The ProfitBricks Builder is able to create virtual machines for
-[ProfitBricks](https://www.profitbricks.com).
+[IONOS Compute Engine](https://cloud.ionos.com/compute).
 
 ## Configuration Reference
 
@@ -27,11 +27,11 @@ can also be supplied to override the typical auto-generated key:
   [ProfitBricks CLI](https://github.com/profitbricks/profitbricks-cli#image).
 
 - `password` (string) - ProfitBricks password. This can be specified via
-  environment variable \`PROFITBRICKS_PASSWORD', if provided. The value
+  environment variable `PROFITBRICKS_PASSWORD`, if provided. The value
   defined in the config has precedence over environemnt variable.
 
 - `username` (string) - ProfitBricks username. This can be specified via
-  environment variable \`PROFITBRICKS_USERNAME', if provided. The value
+  environment variable `PROFITBRICKS_USERNAME`, if provided. The value
   defined in the config has precedence over environemnt variable.
 
 ### Optional
@@ -64,6 +64,25 @@ can also be supplied to override the typical auto-generated key:
 ## Example
 
 Here is a basic example:
+
+### HCL
+
+```hcl
+source "profitbricks" "ubuntu" {
+  image             = "Ubuntu-16.04"
+  disk_size         = 5
+  snapshot_name     = "double"
+  snapshot_password = "test1234"
+  ssh_username      = "root"
+  timeout           = 100
+}
+
+build {
+  sources = "profitbricks.ubuntu"
+}
+```
+
+### JSON
 
 ```json
 {
